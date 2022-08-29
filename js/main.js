@@ -17,7 +17,9 @@ const getCard = (item) => {
     item.id
   } "class="btn d-block mx-auto ${item.stock ? "btn-dark" : "btn-secondary"}" ${
     !item.stock ? "disabled" : ""
-  } >Agregar</button></div>
+  } >Agregar
+  
+  </button></div>
                 
         </div>
     `;
@@ -31,7 +33,7 @@ const getRow = (item) => {
         <td>${item.tipo}</td>
         <td>${item.cantidad}</td>
         <td>$${item.precio * item.cantidad} ($${item.precio}/Unit)</td>
-        <td><img style="width:10px" src="${item.foto}" alt="imagen"></td>
+        <td><button class="bi bi-trash3" id="btnEliminar"></button></td>
     </tr>
         `;
 };
@@ -47,6 +49,14 @@ const cargarProductos = (datos, nodo, esTabla) => {
 const agregarCarrito = (id) => {
   const seleccion = listadoProductos.find((item) => item.id === id);
   const busqueda = carrito.findIndex((el) => el.id === id);
+
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Producto agregado!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
 
   if (busqueda === -1) {
     carrito.push({
