@@ -130,26 +130,6 @@ btnVaciarCarrito.addEventListener("click", () => {
     });
 });
 
-//BOTON BORRAR PRODUCTO
-// const btnEliminar = document.getElementById("btnEliminar");
-
-// let btnEliminar = document.getElementById(`btn-eliminar${id}`);
-// btnEliminar.addEventListener('click', ()=> {
-//     Toastify({
-//         text: "Producto eliminado",
-//         close: true,
-//         position: "left",
-//         style: {
-//             background: "linear-gradient(to left, #E55C31, #E59031)",
-//         }
-//     }).showToast();
-//     if(seleccion.cantidad ==1){
-//         carrito = carrito.filter((item) => item.id !== seleccion.id)
-//         btnEliminar.parentElement.remove();
-//         actualizarCarrito();
-
-//     }
-
 // SWEETT ALERT PRODUCTO AGREGADO
 const botonAgregar = document.querySelectorAll(".btnAdd");
 botonAgregar.forEach((item) => {
