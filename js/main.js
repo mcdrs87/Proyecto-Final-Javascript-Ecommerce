@@ -1,7 +1,6 @@
 const contenedor = document.getElementById("productos");
 const tablaCarrito = document.getElementById("tablaCarrito");
 let carrito = [];
-const subtotal = document.getElementById("subtotal");
 const btnFinalizar = document.getElementById("botonFinalizar");
 
 //CREAR TARJETAS
@@ -34,7 +33,6 @@ const getRow = (item) => {
         <td>${item.tipo}</td>
         <td>${item.cantidad}</td>
         <td>$${item.precio * item.cantidad} ($${item.precio}/Unit)</td>
-        <td><button class="bi bi-trash3" id="btnEliminar"></button></td>
     </tr>
         `;
 };
@@ -60,13 +58,13 @@ const agregarCarrito = (id) => {
       tipo: seleccion.tipo,
       precio: seleccion.precio,
       cantidad: 1,
-      delete: seleccion.foto,
     });
   } else {
     carrito[busqueda].cantidad = carrito[busqueda].cantidad + 1;
   }
   setCarrito();
   cargarProductos(carrito, tablaCarrito, true);
+  actualizarCarrito();
 };
 
 cargarProductos(listadoProductos, contenedor, false);
@@ -89,11 +87,11 @@ getCarrito();
 //BOTON VACIAR CARRITO
 
 const btnVaciarCarrito = document.getElementById("botonVaciar");
-
 const vaciarCarrito = () => {
   localStorage.clear();
   carrito = [];
   cargarProductos(carrito, tablaCarrito, false);
+  actualizarCarrito();
 };
 
 btnVaciarCarrito.addEventListener("click", () => {
@@ -133,7 +131,24 @@ btnVaciarCarrito.addEventListener("click", () => {
 });
 
 //BOTON BORRAR PRODUCTO
-const btnEliminar = document.getElementById("btnEliminar");
+// const btnEliminar = document.getElementById("btnEliminar");
+
+// let btnEliminar = document.getElementById(`btn-eliminar${id}`);
+// btnEliminar.addEventListener('click', ()=> {
+//     Toastify({
+//         text: "Producto eliminado",
+//         close: true,
+//         position: "left",
+//         style: {
+//             background: "linear-gradient(to left, #E55C31, #E59031)",
+//         }
+//     }).showToast();
+//     if(seleccion.cantidad ==1){
+//         carrito = carrito.filter((item) => item.id !== seleccion.id)
+//         btnEliminar.parentElement.remove();
+//         actualizarCarrito();
+
+//     }
 
 // SWEETT ALERT PRODUCTO AGREGADO
 const botonAgregar = document.querySelectorAll(".btnAdd");
@@ -148,3 +163,50 @@ botonAgregar.forEach((item) => {
     });
   });
 });
+
+//CALCULAR COMPRA EN MODAL
+
+/* Calculo de totales */
+function actualizarCarrito() {
+  let precioTotal = document.getElementById("precioTotal");
+  precioTotal.innerHTML = carrito.reduce(
+    (acc, el) => acc + el.precio * el.cantidad,
+    0
+  );
+}
+
+//PAGO CON MP//
+
+btnFinalizar.addEventListener("click", () => pagar());
+
+const pagar = async () => {
+  const productosToMap = carrito.map((Element) => {
+    let nuevoElemento = {
+      title: Element.familia,
+      description: Element.tipo,
+      picture_url: Element.foto,
+      category_id: Element.id,
+      quantity: Element.cantidad,
+      currency_id: "UYU",
+      unit_price: Element.precio,
+    };
+    return nuevoElemento;
+  });
+
+  let response = await fetch(
+    "https://api.mercadopago.com/checkout/preferences",
+    {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Bearer TEST-5930874432949823-091922-6540cb90da4aa1f11af9f30ab1eb6eba-268454727",
+      },
+      body: JSON.stringify({
+        items: productosToMap,
+      }),
+    }
+  );
+  let data = await response.json();
+  console.log(data);
+  window.open(data.init_point, "_blank");
+};

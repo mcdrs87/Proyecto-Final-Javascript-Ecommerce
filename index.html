@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Segunda Entrega Proyecto Final</title>
+    <title>Proyecto Final</title>
+   <!-- BOOTSRAP LINKS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
@@ -16,10 +17,11 @@
       crossorigin="anonymous"
     />
   </head>
+  <!-- NAV -->
   <body>
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand text-white bg-dark" href="#">Vradislav Wear</a>
+        <a class="navbar-brand text-white bg-dark m-4" href="#">Vradislav Wear</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -36,8 +38,8 @@
             <a class="nav-link active text-muted" aria-current="page"
               >Productos</a
             >
-            <a class="nav-link text-muted" href="#">Ubicación</a>
-            <a class="nav-link text-muted" href="#">Contacto</a>
+            <a class="nav-link text-muted" href="#">Encontranos</a>
+            <a class="nav-link text-muted" href="#">Redes Sociales</a>
           </div>
         </div>
       </div>
@@ -45,21 +47,23 @@
       <button
         type="button"
         id="btnCarrito"
-        class="btn btn-secondary m-2"
+        class="btn btn-secondary m-4"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
         Carrito
       </button>
     </nav>
+    <!-- PORTADA -->
+    <img src="./img/banner_portada.jpg" class="img-fluid" alt="banner_portada">
     <div class="container">
+      <h2 class="text-center h3 mb-3 pt-5">TIENDA </i></h2>
       <div
         id="productos"
         class="d-flex justify-content-between flex-wrap mt-3 p-3"
       ></div>
     </div>
-
-    <!-- Modal -->
+    <!-- MODAL -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -87,12 +91,15 @@
                   <th scope="col">Tipo</th>
                   <th scope="col">Cantidad</th>
                   <th scope="col">Precio</th>
-                  <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody id="tablaCarrito"></tbody>
             </table>
+            <h3 class="precioFinal">
+              Precio total: $ <span id="precioTotal">0</span>
+            </h3>
           </div>
+
           <div class="modal-footer">
             <button
               type="button"
@@ -114,6 +121,58 @@
         </div>
       </div>
     </div>
+       <!-- ENCONTRANOS -->
+       <section class="container-fluid pb-5 bg-lav  contacto" id="contacto">
+        <h2 class="text-center h3 mb-3 pt-5">ENCONTRANOS </i></h2>
+        <br>
+       <article class="col-12 -md-6 mb-1">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1094.4263481564337!2d-56.186638653163804!3d-34.9063196128476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2suy!4v1644519947983!5m2!1ses-419!2suy"
+          width="100%"
+          height="350"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </article>
+      </section>
+    <!-- FOOTER -->
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a
+            class="btn btn-outline-light btn-floating m-1"
+            href="#!"
+            role="button"
+            ><i class="bi bi-facebook"></i
+          ></a>
+
+          <!-- Instagram -->
+          <a class="btn btn-outline-light m-1" href="#!" role="button"
+            ><i class="bi bi-instagram"></i
+          ></a>
+
+          <!-- Whatsapp -->
+          <a
+            class="btn btn-outline-light btn-floating m-1"
+            href="#!"
+            role="button"
+            ><i class="bi bi-whatsapp"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2022 Copyright:
+        <a class="text-white" href="index.html">vradislav.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
