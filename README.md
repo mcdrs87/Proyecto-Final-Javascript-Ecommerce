@@ -1,5 +1,5 @@
 # Proyecto-Final-Javascript-Ecommerce
-https://mcdrs87.github.io/PROYECTOFINALDESARROLLO-CODERHOUSE-/
+https://mcdrs87.github.io/Proyecto-Final-Javascript-Ecommerce/
 
 Proyecto Final de JS 
 Ecommerce creado con boostrapp y javascript utilizando los conceptos desarrollados durante el curso.
